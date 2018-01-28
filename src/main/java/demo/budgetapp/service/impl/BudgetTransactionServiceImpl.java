@@ -3,6 +3,7 @@ package demo.budgetapp.service.impl;
 import demo.budgetapp.domain.BudgetTransaction;
 import demo.budgetapp.repository.TransactionRepository;
 import demo.budgetapp.service.BudgetTransactionService;
+import jdk.nashorn.internal.runtime.options.Option;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Ndumiso on 1/28/2018.
@@ -29,9 +31,9 @@ public class BudgetTransactionServiceImpl implements BudgetTransactionService {
     }
 
     @Override
-    public BudgetTransaction findById(Long id) {
+    public Optional<BudgetTransaction> findById(Long id) {
         logger.debug("Service Request to find Transaction with id : " + id);
-        return transactionRepository.getOne(id);
+        return transactionRepository.findById(id);
     }
 
     @Override
@@ -44,5 +46,10 @@ public class BudgetTransactionServiceImpl implements BudgetTransactionService {
     public BudgetTransaction update(BudgetTransaction transaction) {
         logger.debug("Service Request to update Transaction");
         return transactionRepository.save(transaction);
+    }
+
+    @Override
+    public void deleteBudget(BudgetTransaction entity) {
+        transactionRepository.delete(entity);
     }
 }

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.time.Month;
 import java.util.Set;
 
@@ -18,6 +19,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(exclude = {"disposableCash", "transactions"}, callSuper = true)
+@XmlRootElement
 public class Budget extends BaseEntity {
 
     @NotNull
@@ -46,7 +48,7 @@ public class Budget extends BaseEntity {
     private double getSumOfTransactionType(TransactionType transactionType) {
         return this.transactions.stream().parallel()
                 .filter(t -> t.getTransactionType().equals(transactionType))
-                .mapToDouble(t -> t.getAmount())
+                .mapToDouble(BudgetTransaction::getAmount)
                 .sum();
     }
 }

@@ -1,6 +1,7 @@
 package demo.budgetapp.service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Ndumiso on 1/28/2018.
@@ -21,7 +22,7 @@ public interface AbtractCrudService<T> {
      * @return T
      */
 
-    T findById(Long id);
+    Optional<T> findById(Long id);
 
     /**
      * saves T to database
@@ -40,4 +41,6 @@ public interface AbtractCrudService<T> {
      */
 
     T update(T entity);
+
+    void deleteBudget(T entity);
 }

@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Month;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Ndumiso on 1/28/2018.
@@ -30,10 +31,9 @@ public class BudgetServiceImpl implements BudgetService {
         return budgetRepository.findAll();
     }
 
-    @Override
-    public Budget findById(Long id) {
+    public Optional<Budget> findById(Long id) {
         logger.debug("**** Service Request to find budget with id : " + id + " ****");
-        return budgetRepository.getOne(id);
+        return budgetRepository.findById(id);
     }
 
     @Override
@@ -46,6 +46,10 @@ public class BudgetServiceImpl implements BudgetService {
     public Budget update(Budget entity) {
         logger.debug("**** Service Request to update budget with id " + entity.getId() + " ****");
         return budgetRepository.save(entity);
+    }
+
+    public void deleteBudget(Budget budget) {
+        budgetRepository.delete(budget);
     }
 
     @Override
