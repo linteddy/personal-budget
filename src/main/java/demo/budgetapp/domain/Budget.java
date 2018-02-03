@@ -13,6 +13,10 @@ import java.util.Set;
 
 /**
  * Created by Ndumiso on 1/27/2018.
+ * <p>
+ * A budget encapsulates your anticipated spending for a specific month, leaving you with a rough
+ * estimate of how much disposable cash you should be left with.
+ * </p>
  */
 @Entity
 @Table
@@ -40,6 +44,9 @@ public class Budget extends BaseEntity {
         this.calculateDisposableCash();
     }
 
+    /**
+     * Calculates and sets the disposable cash for this budget.
+     */
     private void calculateDisposableCash() {
         this.disposableCash = getSumOfTransactionType(TransactionType.INCOME) -
                 getSumOfTransactionType(TransactionType.EXPENSE);
