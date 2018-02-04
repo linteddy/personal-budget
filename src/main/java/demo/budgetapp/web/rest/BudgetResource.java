@@ -23,6 +23,7 @@ import java.util.Optional;
 @RequestMapping(value = "/api/budgets",
         produces = {MediaType.APPLICATION_JSON_VALUE,
                 MediaType.APPLICATION_XML_VALUE})
+@CrossOrigin(allowedHeaders = {"*"})
 public class BudgetResource {
 
     private final Logger logger = LoggerFactory.getLogger(BudgetResource.class);
