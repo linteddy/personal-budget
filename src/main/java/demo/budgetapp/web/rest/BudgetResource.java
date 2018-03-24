@@ -6,13 +6,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.ws.rs.NotFoundException;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,8 +24,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping(value = "/api/budgets",
-        produces = {MediaType.APPLICATION_JSON_VALUE,
-                MediaType.APPLICATION_XML_VALUE})
+        produces = {MediaType.APPLICATION_JSON_VALUE})
 @CrossOrigin(allowedHeaders = {"*"})
 public class BudgetResource {
 
@@ -49,6 +51,13 @@ public class BudgetResource {
     public ResponseEntity<String> deleteBudget(@RequestBody @Valid Budget budget) {
         budgetService.deleteBudget(budget);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Budget> createBudget(@RequestBody @Valid Budget budget) {
+        budget.calculateDisposableCash();
+        Budget result = this.budgetService.save(budget);
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
 }

@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.annotation.Nullable;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -31,9 +32,8 @@ public class Budget extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Month month;
 
-    @NotNull
     @Column
-    private double disposableCash;
+    private Double disposableCash;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<BudgetTransaction> transactions;
@@ -47,7 +47,7 @@ public class Budget extends BaseEntity {
     /**
      * Calculates and sets the disposable cash for this budget.
      */
-    private void calculateDisposableCash() {
+    public void calculateDisposableCash() {
         this.disposableCash = getSumOfTransactionType(TransactionType.INCOME) -
                 getSumOfTransactionType(TransactionType.EXPENSE);
     }
