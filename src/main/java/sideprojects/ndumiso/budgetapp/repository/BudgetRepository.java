@@ -1,8 +1,8 @@
-package demo.budgetapp.repository;
+package sideprojects.ndumiso.budgetapp.repository;
 
-import demo.budgetapp.domain.Budget;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import sideprojects.ndumiso.budgetapp.domain.Budget;
 
 import java.time.Month;
 

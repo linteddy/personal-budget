@@ -1,4 +1,4 @@
-package demo.budgetapp.domain;
+package sideprojects.ndumiso.budgetapp.domain;
 
 /**
  * Created by Ndumiso on 1/27/2018.

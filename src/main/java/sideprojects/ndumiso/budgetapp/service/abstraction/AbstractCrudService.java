@@ -1,4 +1,4 @@
-package demo.budgetapp.service;
+package sideprojects.ndumiso.budgetapp.service.abstraction;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,7 +6,7 @@ import java.util.Optional;
 /**
  * Created by Ndumiso on 1/28/2018.
  */
-public interface AbtractCrudService<T> {
+public interface AbstractCrudService<T> {
 
     /**
      * finds all T entities
@@ -31,7 +31,7 @@ public interface AbtractCrudService<T> {
      * @return T
      */
 
-    T save(T entity);
+    T create(T entity);
 
     /**
      * updates the entity T
@@ -41,6 +41,4 @@ public interface AbtractCrudService<T> {
      */
 
     T update(T entity);
-
-    void deleteBudget(T entity);
 }

@@ -1,7 +1,6 @@
-package demo.budgetapp.repository;
+package sideprojects.ndumiso.budgetapp.repository;
 
-import demo.budgetapp.domain.Budget;
-import demo.budgetapp.domain.BudgetTransaction;
+import sideprojects.ndumiso.budgetapp.domain.BudgetTransaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

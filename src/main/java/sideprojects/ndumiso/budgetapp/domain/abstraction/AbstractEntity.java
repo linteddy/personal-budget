@@ -1,4 +1,8 @@
-package demo.budgetapp.domain;
+package sideprojects.ndumiso.budgetapp.domain.abstraction;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,17 +14,12 @@ import java.io.Serializable;
  * Created by Ndumiso on 1/27/2018.
  */
 @MappedSuperclass
-public class BaseEntity implements Serializable {
+@Data
+@NoArgsConstructor
+@EqualsAndHashCode
+public abstract class AbstractEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    protected Long id;
 }
