@@ -1,7 +1,6 @@
 package sideprojects.ndumiso.budgetapp.domain.abstraction;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.GeneratedValue;
@@ -16,7 +15,6 @@ import java.io.Serializable;
 @MappedSuperclass
 @Data
 @NoArgsConstructor
-@EqualsAndHashCode
 public abstract class AbstractEntity implements Serializable {
 
     @Id
